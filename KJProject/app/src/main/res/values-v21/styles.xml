@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Happits" parent="AppTheme">
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorBackground">@color/colorPrimary</item>
+        <item name="android:navigationBarColor">@android:color/holo_blue_bright</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <item name="android:colorForeground">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">?attr/actionMenuTextColor</item>
+        <item name="android:statusBarColor">@android:color/holo_blue_bright</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimaryInverse">@android:color/holo_blue_bright</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@android:color/holo_blue_bright</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/colorPrimary</item>
+        <item name="android:textColorPrimaryInverse">@color/colorAccent</item>
+        <item name="android:textColorSecondaryInverse">@android:color/holo_blue_bright</item>
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="android:navigationBarColor">@android:color/holo_blue_bright</item>
+        <item name="android:colorForeground">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">@color/colorAccent</item>
+    </style>
+</resources>
