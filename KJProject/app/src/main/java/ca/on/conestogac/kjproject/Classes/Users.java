@@ -10,7 +10,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity
 public class Users {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public final int userID;
     public String username;
     public String password;
