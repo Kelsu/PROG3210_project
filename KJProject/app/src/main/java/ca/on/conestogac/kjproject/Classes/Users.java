@@ -11,13 +11,12 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Users {
     @PrimaryKey(autoGenerate = true)
-    public final int userID;
+    public int userID;
     public String username;
     public String password;
 
 
-    public Users(int userID, String username, String password){
-        this.userID = userID;
+    public Users(String username, String password){
         this.username = username;
         this.password = password;
     }

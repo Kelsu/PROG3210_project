@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,10 +15,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Bundle bundle = getIntent().getExtras();
-        String name = "Welcome " + bundle.getString("mainUsername");
+        Bundle passedID = getIntent().getExtras();
 
-        TextView welcomeMessage = (TextView) findViewById(R.id.txtWelcomeMessage);
-        welcomeMessage.setText(name);
+        String username = bundle.getString("convertUsername");
+        int curID = passedID.getInt("userID");
+
     }
 
     public void toToDoList(View view) {

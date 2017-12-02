@@ -32,16 +32,13 @@ public class LoginActivity extends AppCompatActivity {
 
         database = AppDatabase.getDatabase(getApplicationContext());
 
-        database.usersDao().removeAllUsers();
-
         // add some data
         List<Users> users = database.usersDao().getAllUser();
         if (users.size()==0) {
-            database.usersDao().addUser(new Users(1, "Kelsey", "Scout"));
+            database.usersDao().addUser(new Users("Kelsey", "Scout"));
             user = database.usersDao().getAllUser().get(0);
-            Toast.makeText(this, String.valueOf(user.userID), Toast.LENGTH_SHORT).show();
-            database.usersDao().addUser(new Users(2, "Hamilton", "Eliza"));
-            database.usersDao().addUser(new Users(3, "Scout", "Meow"));
+            database.usersDao().addUser(new Users("Hamilton", "Eliza"));
+            database.usersDao().addUser(new Users("Scout", "Meow"));
         }
 
     }
@@ -50,34 +47,29 @@ public class LoginActivity extends AppCompatActivity {
 
     public void toMainScreen(View view) {
 
+        database = AppDatabase.getDatabase(getApplicationContext());
+
         EditText password = (EditText) findViewById(R.id.txtPassword);
         EditText username = (EditText) findViewById(R.id.txtUsername);
 
         String convertPassword = password.getText().toString();
         String convertUsername = username.getText().toString();
 
-        String mainUsername = "Kelsey";
-        String mainPassword = "Password";
+        Users userCheck = database.usersDao().checkUser(convertUsername, convertPassword);
 
-
-        if (convertUsername.equals(mainUsername) && convertPassword.equals(mainPassword))
+        if (userCheck != null && userCheck.password.equals(convertPassword))
         {
+            Toast.makeText(this, "Welcome, " + convertUsername + ".", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("mainUsername", mainUsername);
+            intent.putExtra("convertUsername", convertUsername);
+            intent.putExtra("userID", userCheck.userID);
             startActivity(intent);
         }
         else
         {
-            AlertDialog.Builder errorMessage = new AlertDialog.Builder(this);
-            errorMessage.setMessage("Incorrect credentials. Please try again.");
-            errorMessage.setTitle("Error");
-            errorMessage.setPositiveButton("Ok",null);
-            errorMessage.setCancelable(true);
-            errorMessage.create().show();
-
+            Toast.makeText(this, "Username or password is incorrect.", Toast.LENGTH_SHORT).show();
             username.setText("");
             username.requestFocus();
-            password.setText("");
         }
 
     }

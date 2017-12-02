@@ -23,8 +23,11 @@ public interface UsersDao {
     @Query("select * from users")
     public List<Users> getAllUser();
 
-    @Query("select * from users where userID = :userID")
-    public List<Users> getUser(long userID);
+    @Query("select * from users where username = :username")
+    public Users getUser(String username);
+
+    @Query("select * from users where username = :username AND password = :password")
+    public Users checkUser(String username, String password);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateUser(Users users);
