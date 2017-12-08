@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Users user;
     private Files file;
     private AppDatabase database;
+    private ArrayAdapter<Files> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +46,15 @@ public class MainActivity extends AppCompatActivity {
             database.filesDao().addFile(new Files(curID, "Friday"));
             database.filesDao().addFile(new Files(curID, "Saturday"));
             database.filesDao().addFile(new Files(curID, "Sunday"));
+            files = database.filesDao().selectFiles(curID);
             //user = database.usersDao().getAllUser().get(0);
         }
 
         String username = bundle.getString("convertUsername");
 
-        ListView lstFiles = (ListView) findViewById(R.id.lstFiles);
+        final ListView lstFiles = (ListView) findViewById(R.id.lstFiles);
 
-        ArrayAdapter<Files> adapter = new ArrayAdapter<Files>(this, R.layout.filescell, files);
+        adapter = new ArrayAdapter<Files>(this, R.layout.filescell, files);
 
         lstFiles.setAdapter(adapter);
 
@@ -61,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 Intent intent = new Intent(MainActivity.this, ListHabitsActivity.class);
-                intent.putExtra("curID", curID);
+
+                //long fileID = adapter.getItem(position).fileID;
+                intent.putExtra("curID", adapter.getItem(position).fileID);
                 startActivity(intent);
             }
         });

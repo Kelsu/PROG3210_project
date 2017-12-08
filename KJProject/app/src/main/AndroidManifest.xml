@@ -26,7 +26,8 @@
         </activity>
         <activity android:name=".AddToDoItemActivity" />
         <activity android:name=".CreateAccountActivity" />
-        <activity android:name=".ListHabitsActivity"></activity>
+        <activity android:name=".ListHabitsActivity" />
+        <activity android:name=".AddHabitActivity"></activity>
     </application>
 
 </manifest>

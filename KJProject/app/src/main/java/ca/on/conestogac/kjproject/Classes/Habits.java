@@ -36,4 +36,9 @@ public class Habits {
         this.habit = habit;
         //this.date = new Date(System.currentTimeMillis());
     }
+
+    @Override
+    public String toString() {
+        return habit;
+    }
 }

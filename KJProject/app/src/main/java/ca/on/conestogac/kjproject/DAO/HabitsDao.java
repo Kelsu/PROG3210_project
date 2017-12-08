@@ -23,8 +23,14 @@ public interface HabitsDao {
     @Query("select * from habits")
     public List<Habits> getAllHabits();
 
+    @Query("select * from habits where habit = :habit")
+    public Habits getHabit(String habit);
+
+    @Query("select * from habits where habit = :habit AND fileID = :fileID")
+    public Habits checkHabit(String habit, long fileID);
+
     @Query("select * from habits where fileID = :fileID")
-    public Habits getHabit(long fileID);
+    public List<Habits> selectHabits(long fileID);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void updateHabit(Habits habits);

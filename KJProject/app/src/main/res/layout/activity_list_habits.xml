@@ -8,23 +8,42 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="183dp"
-        android:layout_height="98dp"
-        app:srcCompat="@drawable/happits_word"
-        tools:layout_editor_absoluteX="89dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginStart="89dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/lstHabits"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/happits_word" />
 
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_add"
-        tools:layout_editor_absoluteX="299dp"
-        tools:layout_editor_absoluteY="33dp" />
+        android:layout_marginBottom="37dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginTop="33dp"
+        android:background="@null"
+        android:onClick="createHabit"
+        app:layout_constraintBottom_toTopOf="@+id/lstHabits"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_add" />
 
     <ListView
-        android:layout_width="368dp"
-        android:layout_height="437dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="122dp" />
+        android:id="@+id/lstHabits"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 </android.support.constraint.ConstraintLayout>
