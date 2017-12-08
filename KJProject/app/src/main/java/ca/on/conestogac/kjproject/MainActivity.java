@@ -1,31 +1,73 @@
 package ca.on.conestogac.kjproject;
 
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.List;
+
+import ca.on.conestogac.kjproject.Classes.Files;
+import ca.on.conestogac.kjproject.Classes.Users;
+import ca.on.conestogac.kjproject.Database.AppDatabase;
+
 public class MainActivity extends AppCompatActivity {
+
+    private Users user;
+    private Files file;
+    private AppDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        database = AppDatabase.getDatabase(getApplicationContext());
+
         Bundle bundle = getIntent().getExtras();
-        Bundle passedID = getIntent().getExtras();
+        final int curID = bundle.getInt("userID");
+
+        List<Files> files = database.filesDao().selectFiles(curID);
+
+        if (files.size()==0) {
+            database.filesDao().addFile(new Files(curID, "Monday"));
+            database.filesDao().addFile(new Files(curID, "Tuesday"));
+            database.filesDao().addFile(new Files(curID, "Wednesday"));
+            database.filesDao().addFile(new Files(curID, "Thursday"));
+            database.filesDao().addFile(new Files(curID, "Friday"));
+            database.filesDao().addFile(new Files(curID, "Saturday"));
+            database.filesDao().addFile(new Files(curID, "Sunday"));
+            //user = database.usersDao().getAllUser().get(0);
+        }
 
         String username = bundle.getString("convertUsername");
-        int curID = passedID.getInt("userID");
 
+        ListView lstFiles = (ListView) findViewById(R.id.lstFiles);
+
+        ArrayAdapter<Files> adapter = new ArrayAdapter<Files>(this, R.layout.filescell, files);
+
+        lstFiles.setAdapter(adapter);
+
+        lstFiles.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Intent intent = new Intent(MainActivity.this, ListHabitsActivity.class);
+                intent.putExtra("curID", curID);
+                startActivity(intent);
+            }
+        });
     }
 
-    public void toToDoList(View view) {
-        Intent intent = new Intent(this, ToDoListActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-    }
+
+
 
 }
