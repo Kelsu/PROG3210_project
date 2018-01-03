@@ -8,12 +8,15 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="209dp"
+        android:layout_width="0dp"
         android:layout_height="88dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginStart="88dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/lstFiles"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/happits_word" />
@@ -21,11 +24,12 @@
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="46dp"
-        android:layout_height="186dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="5dp"
         android:layout_marginTop="441dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton2"
         app:srcCompat="@drawable/happits_image" />
 
     <ListView
@@ -40,4 +44,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="364dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginTop="45dp"
+        android:background="@null"
+        android:onClick="goToImage"
+        app:layout_constraintBottom_toTopOf="@+id/imageView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
+
 </android.support.constraint.ConstraintLayout>

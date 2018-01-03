@@ -1,6 +1,7 @@
 package ca.on.conestogac.kjproject;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -81,5 +82,20 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    public void emailUs(View view) {
 
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/html");
+        intent.putExtra(Intent.EXTRA_EMAIL, "emailaddress@emailaddress.com");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Example Subject");
+        intent.putExtra(Intent.EXTRA_TEXT, "I'm an example email.");
+
+        startActivity(Intent.createChooser(intent, "Send Email"));
+    }
+
+    public void callUs(View view) {
+
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + "888-888-8888"));
+        startActivity(intent);
+    }
 }

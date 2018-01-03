@@ -71,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void goToImage(View view) {
+
+        Intent intent = new Intent(this, ImageActivity.class);
+        startActivity(intent);
+
+    }
 
 
 
